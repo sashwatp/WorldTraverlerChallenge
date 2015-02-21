@@ -27,14 +27,16 @@ public class RestrictedCountryCityParser {
 			
 	        while (line != null) {
 	        	line=line.trim();
-	        	temp=line.split(":");
-	        	
-	        	CountryCity countryCityObj = new CountryCity();
-	        	if(temp[0] != null && temp[1] != null ) {
-	        		countryCityObj.setCountry(temp[0]);
-	        		countryCityObj.setCity(temp[1]);
-	        		
-	        		restrictedCountryCity.add(countryCityObj);
+	        	if(line.isEmpty()) {
+		        	temp=line.split(":");
+		        	
+		        	CountryCity countryCityObj = new CountryCity();
+		        	if(temp[0] != null && temp[1] != null ) {
+		        		countryCityObj.setCountry(temp[0]);
+		        		countryCityObj.setCity(temp[1]);
+		        		
+		        		restrictedCountryCity.add(countryCityObj);
+		        	}
 	        	}
 	            line = br.readLine();
 	        }

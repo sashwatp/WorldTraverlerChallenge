@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 
 public class RestrictedCountryParser {
@@ -16,6 +17,7 @@ public class RestrictedCountryParser {
 
 	RestrictedCountryParser(String filePath) throws IOException {
 
+		restrictedCountries = new HashSet<String>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
 			String line;
@@ -23,7 +25,9 @@ public class RestrictedCountryParser {
 
 			while (line != null) {
 				line = line.trim();
-				restrictedCountries.add(line);
+				if (!line.isEmpty()) {
+					restrictedCountries.add(line);
+				}
 				line = br.readLine();
 			}
 
