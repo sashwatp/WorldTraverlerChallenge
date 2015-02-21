@@ -33,12 +33,16 @@ public class WantToVisitParser {
 					temp = line.split(":");
 
 					CountryCity countryCityObj = new CountryCity();
-					countryCityObj.setCountry(temp[0]);
-					if (temp[1] == null) {
-						countryCityObj.setCity(null);
-					} else {
+					if(temp.length == 2) {
+						countryCityObj.setCountry(temp[0]);
 						countryCityObj.setCity(temp[1]);
+						
+					}else {
+						countryCityObj.setCountry(temp[0]);
+						countryCityObj.setCity(null);
+						
 					}
+					
 					wantToVisitCountryCity.add(countryCityObj);
 					
 				}

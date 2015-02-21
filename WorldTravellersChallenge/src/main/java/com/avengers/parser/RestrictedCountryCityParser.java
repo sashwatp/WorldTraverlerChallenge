@@ -13,7 +13,7 @@ import com.avengers.constants.FilePath;
 public class RestrictedCountryCityParser {
 
 	private Set<CountryCity> restrictedCountryCity;
-	
+
 	public Set<CountryCity> getRestrictedCountryCity() {
 		return restrictedCountryCity;
 	}
@@ -25,28 +25,28 @@ public class RestrictedCountryCityParser {
 			String line;
 			String[] temp;
 			line = br.readLine();
-			
-	        while (line != null) {
-	        	line=line.trim();
-	        	if(line.isEmpty()) {
-		        	temp=line.split(":");
-		        	
-		        	CountryCity countryCityObj = new CountryCity();
-		        	if(temp[0] != null && temp[1] != null ) {
-		        		countryCityObj.setCountry(temp[0]);
-		        		countryCityObj.setCity(temp[1]);
-		        		
-		        		restrictedCountryCity.add(countryCityObj);
-		        	}
-	        	}
-	            line = br.readLine();
-	        }
-	        
-		}catch(FileNotFoundException e) {
+
+			while (line != null) {
+				line = line.trim();
+				if (!line.isEmpty()) {
+					temp = line.split(":");
+					if (temp.length == 2) {
+						CountryCity countryCityObj = new CountryCity();
+
+						countryCityObj.setCountry(temp[0]);
+						countryCityObj.setCity(temp[1]);
+
+						restrictedCountryCity.add(countryCityObj);
+
+					}
+				}
+				line = br.readLine();
+			}
+
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-	
+
 	}
-	
-	
+
 }

@@ -30,12 +30,10 @@ public class VisitedCountryCityParser {
 				line = line.trim();
 				if (!line.isEmpty()) {
 					temp = line.split(":");
-
-					CountryCity countryCityObj = new CountryCity();
-					if (temp[0] != null && temp[1] != null) {
+					if (temp.length == 2) {
+						CountryCity countryCityObj = new CountryCity();
 						countryCityObj.setCountry(temp[0]);
 						countryCityObj.setCity(temp[1]);
-
 						visitedCountryCity.add(countryCityObj);
 					}
 				}
@@ -43,7 +41,7 @@ public class VisitedCountryCityParser {
 			}
 
 		} catch (FileNotFoundException e) {
-		    e.printStackTrace();
+			e.printStackTrace();
 		}
 
 	}

@@ -19,13 +19,13 @@ public class RestrictedCountryParserTest {
 
 	final static String FILE_PATH = "RestrictedCities.txt";
 	
-	RestrictedCountryParser systemUnderTest;
+	RestrictedCountryCityParser systemUnderTest;
 	
 	@Before
 	public void setup() throws IOException{
 
 	 
-		systemUnderTest = new RestrictedCountryParser(FILE_PATH);
+		systemUnderTest = new RestrictedCountryCityParser(FILE_PATH);
 	}
 	@SuppressWarnings("deprecation")
 	@Test
@@ -37,7 +37,7 @@ public class RestrictedCountryParserTest {
 		restrictedCountries.add("Lucknow");
 		restrictedCountries.add("Newark");
 		
-		Assert.assertEquals(restrictedCountries, systemUnderTest.getRestrictedCountries());
+		Assert.assertEquals(restrictedCountries, systemUnderTest.getRestrictedCountryCity());
 		
 	}
 

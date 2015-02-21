@@ -3,9 +3,7 @@ package com.avengers.main;
 import java.util.Scanner;
 
 public class Main {
-	public static void main(String args[]) {
-		
-	}
+	
 
 	public static void main(String[] args) {
 		String countryCity;
@@ -26,9 +24,9 @@ public class Main {
 			Integer input = stdin.nextInt();
 			switch (input) {
 			case 1:
-
+				break;
 			case 2:
-
+				break;
 			case 3:
 				System.out.println("Enter country:city");
 				stdin = new Scanner(System.in);
@@ -38,7 +36,7 @@ public class Main {
 				} else {
 					System.out.println("Invalid input. Should be of the format country:city");
 				}
-
+				break;
 			case 4:
 				System.out.println("Enter country:city");
 				stdin = new Scanner(System.in);
@@ -48,6 +46,7 @@ public class Main {
 				} else {
 					System.out.println("Invalid input. Should be of the format country:city");
 				}
+				break;
 			case 5:
 				System.out.println("Enter country:city");
 				stdin = new Scanner(System.in);
@@ -57,9 +56,10 @@ public class Main {
 				} else {
 					System.out.println("Invalid input. Should be of the format country:city");
 				}
+				break;
 			case 0:
 				System.exit(0);
-
+				break;
 			default:
 				System.out.println("Invalid input");
 
