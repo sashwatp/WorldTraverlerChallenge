@@ -28,7 +28,7 @@ public class RestrictedCountryCityParser {
 			
 	        while (line != null) {
 	        	line=line.trim();
-	        	if(line.isEmpty()) {
+	        	if(!line.isEmpty()) {
 		        	temp=line.split(":");
 		        	
 		        	CountryCity countryCityObj = new CountryCity();
