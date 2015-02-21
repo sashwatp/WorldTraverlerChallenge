@@ -4,9 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
-import com.avengers.model.*;
 
+import com.avengers.model.*;
 import com.avengers.constants.FilePath;
 
 public class RestrictedCountryCityParser {
@@ -18,7 +19,7 @@ public class RestrictedCountryCityParser {
 	}
 
 	RestrictedCountryCityParser(String filePath) throws IOException {
-		
+		restrictedCountryCity = new HashSet<CountryCity>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
 			String line;
