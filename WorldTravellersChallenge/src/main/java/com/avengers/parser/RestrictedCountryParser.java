@@ -32,7 +32,7 @@ public class RestrictedCountryParser {
 			}
 
 		} catch (FileNotFoundException e) {
-
+		    e.printStackTrace();
 		}
 
 	}
