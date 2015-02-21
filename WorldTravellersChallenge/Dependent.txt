@@ -1,0 +1,12 @@
+Brazil:Manus/India:Mumbai/India:Nagpur/India:Shimla/Japan:Tokyo
+India:Mumbai/Brazil:Guarulhos/USA:California
+Brazil:Manus/India:Delhi/China:Shanghai/Japan:Tokyo
+Brazil:Manus/India:Mumbai/India:Nagpur/India:Shimla
+India:Bangalore/India:Bhopal/India:Pune/India:Nagpur/India:Ooty
+India:Lucknow/USA:Newark/India:Ooty
+Brazil:Manus/India:Delhi/China:Shanghai/Japan:Tokyo/India:Hubli
+China:Shanghai/Japan:Tokyo/India:Hubli/India:Mysore
+USA:Newark/India:Ooty/China:Shanghai
+Pakistan:Hyderabad/China:Shanghai/Japan:Tokyo
+India:Lucknow/India:Hyderabad/Srilanka:Bentota
+UAE:Dubai/India:Delhi/USA:California
