@@ -7,8 +7,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.avengers.model.*;
-import com.avengers.constants.FilePath;
+import com.avengers.model.CountryCity;
 
 public class RestrictedCountryCityParser {
 

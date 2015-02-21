@@ -2,11 +2,22 @@ package com.avengers.main;
 
 import java.util.Scanner;
 
-public class Main {
-	
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.avengers.constants.BeanIdentifiers;
+
+public class Main {
 	public static void main(String[] args) {
 		String countryCity;
+
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+				"beans.xml");
+
+		ApplicationInitializer applicationInitializer = (ApplicationInitializer) applicationContext
+				.getBean(BeanIdentifiers.APPLICATION_INITIALIZER);
+
+		applicationInitializer.init();
 
 		while (true) {
 			System.out.println("Input:");
@@ -34,7 +45,8 @@ public class Main {
 				if (validateInput(countryCity)) {
 
 				} else {
-					System.out.println("Invalid input. Should be of the format country:city");
+					System.out
+							.println("Invalid input. Should be of the format country:city");
 				}
 				break;
 			case 4:
@@ -44,7 +56,8 @@ public class Main {
 				if (validateInput(countryCity)) {
 
 				} else {
-					System.out.println("Invalid input. Should be of the format country:city");
+					System.out
+							.println("Invalid input. Should be of the format country:city");
 				}
 				break;
 			case 5:
@@ -54,7 +67,8 @@ public class Main {
 				if (validateInput(countryCity)) {
 
 				} else {
-					System.out.println("Invalid input. Should be of the format country:city");
+					System.out
+							.println("Invalid input. Should be of the format country:city");
 				}
 				break;
 			case 0:
@@ -68,8 +82,8 @@ public class Main {
 	}
 
 	public static boolean validateInput(String input) {
-		String[] temp= input.split(":");
-		if(temp[0].isEmpty() || temp[1].isEmpty() ){
+		String[] temp = input.split(":");
+		if (temp[0].isEmpty() || temp[1].isEmpty()) {
 			return false;
 		}
 		return true;
