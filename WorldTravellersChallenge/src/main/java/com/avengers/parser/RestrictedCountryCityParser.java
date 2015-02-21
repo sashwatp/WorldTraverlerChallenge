@@ -18,7 +18,7 @@ public class RestrictedCountryCityParser {
 		return restrictedCountryCity;
 	}
 
-	RestrictedCountryCityParser(String filePath) throws IOException {
+	public RestrictedCountryCityParser(String filePath) throws IOException {
 		restrictedCountryCity = new HashSet<CountryCity>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));

@@ -17,7 +17,7 @@ public class WantToVisitParser {
 		return wantToVisitCountryCity;
 	}
 
-	WantToVisitParser(String filePath) throws IOException {
+	public WantToVisitParser(String filePath) throws IOException {
 		
 		wantToVisitCountryCity = new HashSet<CountryCity>();
 		try {

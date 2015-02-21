@@ -15,7 +15,7 @@ public class RestrictedCountryParser {
 		return restrictedCountries;
 	}
 
-	RestrictedCountryParser(String filePath) throws IOException {
+	public RestrictedCountryParser(String filePath) throws IOException {
 
 		restrictedCountries = new HashSet<String>();
 		try {
