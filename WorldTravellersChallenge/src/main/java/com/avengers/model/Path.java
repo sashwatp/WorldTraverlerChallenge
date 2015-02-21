@@ -53,7 +53,7 @@ public class Path {
 		this.isValid = isValid;
 	}
 
-	public boolean isHasRestricted() {
+	public boolean HasRestricted() {
 		return hasRestricted;
 	}
 
