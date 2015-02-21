@@ -37,4 +37,12 @@ public class PathSet {
 
     }
 
+    public Path getShortestRestrictedPath() {
+        return shortestRestrictedPath;
+    }
+
+    public Path getShortestUnrestrictedPath() {
+        return shortestUnrestrictedPath;
+    }
+
 }

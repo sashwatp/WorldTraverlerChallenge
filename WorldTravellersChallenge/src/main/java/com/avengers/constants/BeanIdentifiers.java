@@ -17,4 +17,6 @@ public class BeanIdentifiers {
 	public static final String DEPENDENT_PATHS = "DependentPaths";
 
 	public static final String APPLICATION_INITIALIZER = "ApplicationInitializer";
+	
+	public static final String PROCESS_ADAPTER = "ProcessAdapter";
 }
