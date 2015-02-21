@@ -18,39 +18,34 @@ public class WantToVisitParser {
 	}
 
 	public WantToVisitParser(String filePath) throws IOException {
-		
+
 		wantToVisitCountryCity = new HashSet<CountryCity>();
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(filePath));
-			String line;
-			String[] temp;
-			line = br.readLine();
+		BufferedReader br = new BufferedReader(new FileReader(filePath));
+		String line;
+		String[] temp;
+		line = br.readLine();
 
-			while (line != null) {
+		while (line != null) {
 
-				line = line.trim();
-				if (!line.isEmpty()) {
-					temp = line.split(":");
+			line = line.trim();
+			if (!line.isEmpty()) {
+				temp = line.split(":");
 
-					CountryCity countryCityObj = new CountryCity();
-					if(temp.length == 2) {
-						countryCityObj.setCountry(temp[0]);
-						countryCityObj.setCity(temp[1]);
-						
-					}else {
-						countryCityObj.setCountry(temp[0]);
-						countryCityObj.setCity(null);
-						
-					}
-					
-					wantToVisitCountryCity.add(countryCityObj);
-					
+				CountryCity countryCityObj = new CountryCity();
+				if (temp.length == 2) {
+					countryCityObj.setCountry(temp[0]);
+					countryCityObj.setCity(temp[1]);
+
+				} else {
+					countryCityObj.setCountry(temp[0]);
+					countryCityObj.setCity(null);
+
 				}
-				line = br.readLine();
-			}
 
-		} catch (FileNotFoundException e) {
-		    e.printStackTrace();
+				wantToVisitCountryCity.add(countryCityObj);
+
+			}
+			line = br.readLine();
 		}
 
 	}

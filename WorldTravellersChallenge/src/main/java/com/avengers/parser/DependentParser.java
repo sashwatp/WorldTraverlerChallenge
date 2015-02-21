@@ -14,27 +14,25 @@ import com.avengers.constants.FilePath;
 
 public class DependentParser {
 
-    private List<String[]> dependentPath;
+	private List<String[]> dependentPath;
 
-    public List<String[]> getDependentPath() {
-        return dependentPath;
-    }
+	public List<String[]> getDependentPath() {
+		return dependentPath;
+	}
 
-    public DependentParser(String filePath) throws IOException {
-        dependentPath = new ArrayList<String[]>();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(filePath));
-            String line;
-            String[] temp;
-            line = br.readLine();
+	public DependentParser(String filePath) throws IOException {
+		dependentPath = new ArrayList<String[]>();
+		BufferedReader br = new BufferedReader(new FileReader(filePath));
+		String line;
+		String[] temp;
+		line = br.readLine();
 
-            while (line != null) {
-                line = line.trim();
-                temp = line.split("/");
-                dependentPath.add(temp);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+		while (line != null) {
+			line = line.trim();
+			temp = line.split("/");
+			dependentPath.add(temp);
+			line = br.readLine();
+		}
+
+	}
 }

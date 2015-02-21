@@ -39,7 +39,7 @@ public class Main {
 			case 2:
 				break;
 			case 3:
-				System.out.println("Enter country:city");
+				System.out.println("Enter (Format: country:city)");
 				stdin = new Scanner(System.in);
 				countryCity = stdin.toString();
 				if (validateInput(countryCity)) {
@@ -50,7 +50,7 @@ public class Main {
 				}
 				break;
 			case 4:
-				System.out.println("Enter country:city");
+				System.out.println("Enter (Format: country:city)");
 				stdin = new Scanner(System.in);
 				countryCity = stdin.toString();
 				if (validateInput(countryCity)) {
@@ -72,6 +72,7 @@ public class Main {
 				}
 				break;
 			case 0:
+				System.out.println("Exiting Program.");
 				System.exit(0);
 				break;
 			default:

@@ -19,31 +19,26 @@ public class RestrictedCountryCityParser {
 
 	public RestrictedCountryCityParser(String filePath) throws IOException {
 		restrictedCountryCity = new HashSet<CountryCity>();
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(filePath));
-			String line;
-			String[] temp;
-			line = br.readLine();
+		BufferedReader br = new BufferedReader(new FileReader(filePath));
+		String line;
+		String[] temp;
+		line = br.readLine();
 
-			while (line != null) {
-				line = line.trim();
-				if (!line.isEmpty()) {
-					temp = line.split(":");
-					if (temp.length == 2) {
-						CountryCity countryCityObj = new CountryCity();
+		while (line != null) {
+			line = line.trim();
+			if (!line.isEmpty()) {
+				temp = line.split(":");
+				if (temp.length == 2) {
+					CountryCity countryCityObj = new CountryCity();
 
-						countryCityObj.setCountry(temp[0]);
-						countryCityObj.setCity(temp[1]);
+					countryCityObj.setCountry(temp[0]);
+					countryCityObj.setCity(temp[1]);
 
-						restrictedCountryCity.add(countryCityObj);
+					restrictedCountryCity.add(countryCityObj);
 
-					}
 				}
-				line = br.readLine();
 			}
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			line = br.readLine();
 		}
 
 	}

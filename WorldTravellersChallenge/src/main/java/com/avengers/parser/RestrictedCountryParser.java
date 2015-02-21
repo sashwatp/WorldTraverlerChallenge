@@ -18,21 +18,16 @@ public class RestrictedCountryParser {
 	public RestrictedCountryParser(String filePath) throws IOException {
 
 		restrictedCountries = new HashSet<String>();
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(filePath));
-			String line;
-			line = br.readLine();
+		BufferedReader br = new BufferedReader(new FileReader(filePath));
+		String line;
+		line = br.readLine();
 
-			while (line != null) {
-				line = line.trim();
-				if (!line.isEmpty()) {
-					restrictedCountries.add(line);
-				}
-				line = br.readLine();
+		while (line != null) {
+			line = line.trim();
+			if (!line.isEmpty()) {
+				restrictedCountries.add(line);
 			}
-
-		} catch (FileNotFoundException e) {
-		    e.printStackTrace();
+			line = br.readLine();
 		}
 
 	}

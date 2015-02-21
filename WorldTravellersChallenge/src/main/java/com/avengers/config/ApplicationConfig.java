@@ -14,6 +14,7 @@ import com.avengers.constants.FilePath;
 import com.avengers.model.CountryCity;
 import com.avengers.model.Path;
 import com.avengers.model.PathSet;
+import com.avengers.parser.DependentParser;
 import com.avengers.parser.RestrictedCountryCityParser;
 import com.avengers.parser.RestrictedCountryParser;
 import com.avengers.parser.VisitedCountryCityParser;
@@ -57,7 +58,7 @@ public class ApplicationConfig {
 	}
 
 	@Bean(name = BeanIdentifiers.DEPENDENT_PATHS)
-	public Map<CountryCity, PathSet> dependentPaths() {
-		return null;
+	public List<String[]> dependentPaths() throws IOException {
+		return new DependentParser(FilePath.DEPENDENT).getDependentPath();
 	}
 }
