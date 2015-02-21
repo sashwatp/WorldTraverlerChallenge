@@ -46,7 +46,7 @@ public class WantToVisitParser {
 			}
 
 		} catch (FileNotFoundException e) {
-
+		    e.printStackTrace();
 		}
 
 	}

@@ -43,7 +43,7 @@ public class VisitedCountryCityParser {
 			}
 
 		} catch (FileNotFoundException e) {
-
+		    e.printStackTrace();
 		}
 
 	}

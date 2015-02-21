@@ -43,7 +43,7 @@ public class RestrictedCountryCityParser {
 	        }
 	        
 		}catch(FileNotFoundException e) {
-			
+			e.printStackTrace();
 		}
 	
 	}
