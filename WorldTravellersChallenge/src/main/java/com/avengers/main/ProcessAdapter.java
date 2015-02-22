@@ -83,7 +83,10 @@ public class ProcessAdapter {
             try{
                 countryCity = CountryCityParser.parse(countryCityString);
             }catch (Exception e){
-                System.out.println(" Invalid countryCity : "+ countryCityString);
+                System.out.println("Invalid countryCity : "+ countryCityString);
+                System.out.println("--------------------------------------------------------------------------");
+
+                continue;
             }
             path = getShortestUnrestrictedPath(countryCity);
             if (doPrinting) {
