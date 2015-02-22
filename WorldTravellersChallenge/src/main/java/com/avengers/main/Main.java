@@ -26,7 +26,9 @@ public class Main {
         applicationInitializer.init();
 
         while (true) {
-            System.out.println("Input:");
+
+            System.out
+                    .println("===================================== Input: ==========================================");
             System.out.println("1:Shortest dependent and restriction free route for WantToVisit cities.");
             System.out.println("2:Number of \"No route\" results");
             System.out.println("3:Enter country:city to find shortest or longest dependent and restriction free route");
@@ -38,10 +40,17 @@ public class Main {
             Integer input = stdin.nextInt();
             switch (input) {
             case 1:
+                System.out.println("Generating the shortest dependent and restriction free route for WantToVisit.txt");
+                System.out.println("---------------------------------------------------------------------------------");
+                processAdapter.processWantToVisit(true);
                 break;
             case 2:
+                System.out.println("---------------------------------------------------------------------------------");
+                System.out.println("Number of \"No Route\" count :" + processAdapter.getNoRouteCount());
+                System.out.println("---------------------------------------------------------------------------------");
                 break;
             case 3:
+                System.out.println("---------------------------------------------------------------------------------");
                 System.out.println("Enter (Format: country:city)");
                 stdin = new Scanner(System.in);
                 countryCityString = stdin.nextLine();
@@ -49,6 +58,7 @@ public class Main {
                     countryCity = CountryCityParser.parse(countryCityString);
                 } catch (Exception e) {
                     System.out.println("Invalid input. Should be of the format country:city");
+                    continue;
                 }
 
                 path = processAdapter.getShortestUnrestrictedPath(countryCity);
@@ -60,6 +70,7 @@ public class Main {
                 }
                 break;
             case 4:
+                System.out.println("---------------------------------------------------------------------------------");
                 System.out.println("Enter (Format: country:city)");
                 stdin = new Scanner(System.in);
                 countryCityString = stdin.nextLine();
@@ -67,6 +78,7 @@ public class Main {
                     countryCity = CountryCityParser.parse(countryCityString);
                 } catch (Exception e) {
                     System.out.println("Invalid input. Should be of the format country:city");
+                    continue;
                 }
                 path = processAdapter.getShortestPath(countryCity);
 
@@ -77,6 +89,7 @@ public class Main {
                 }
                 break;
             case 5:
+                System.out.println("---------------------------------------------------------------------------------");
                 System.out.println("Enter country:city");
                 stdin = new Scanner(System.in);
                 countryCityString = stdin.nextLine();
@@ -84,8 +97,11 @@ public class Main {
                     countryCity = CountryCityParser.parse(countryCityString);
                 } catch (Exception e) {
                     System.out.println("Invalid input. Should be of the format country:city");
+                    continue;
                 }
                 processAdapter.addVisitedCountryCity(countryCity);
+                System.out.println("Added "+countryCityString+" to visited list");
+                System.out.println("---------------------------------------------------------------------------------");
                 break;
             case 0:
                 System.out.println("Exiting Program.");
