@@ -1,5 +1,6 @@
 package com.avengers.main;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.context.ApplicationContext;
@@ -11,19 +12,21 @@ import com.avengers.model.Path;
 import com.avengers.parser.CountryCityParser;
 
 public class Main {
-    public static void main(String[] args) {
-        String countryCityString;
-        CountryCity countryCity = null;
-        Path path = null;
+	public static void main(String[] args) {
+		String countryCityString;
+		CountryCity countryCity = null;
+		Path path = null;
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext(
+				"beans.xml");
 
-        ApplicationInitializer applicationInitializer = (ApplicationInitializer) context
-                .getBean(BeanIdentifiers.APPLICATION_INITIALIZER);
+		ApplicationInitializer applicationInitializer = (ApplicationInitializer) context
+				.getBean(BeanIdentifiers.APPLICATION_INITIALIZER);
 
-        ProcessAdapter processAdapter = (ProcessAdapter) context.getBean(BeanIdentifiers.PROCESS_ADAPTER);
+		ProcessAdapter processAdapter = (ProcessAdapter) context
+				.getBean(BeanIdentifiers.PROCESS_ADAPTER);
 
-        applicationInitializer.init();
+		applicationInitializer.init();
 
         while (true) {
 
@@ -61,56 +64,72 @@ public class Main {
                     continue;
                 }
 
-                path = processAdapter.getShortestUnrestrictedPath(countryCity);
+				Path shortestPath = processAdapter
+						.getShortestUnrestrictedPath(countryCity);
+				Path longestPath = processAdapter
+						.getLongestUnrestrictedPath(countryCity);
 
-                if (path == null) {
-                    System.out.println("No Route");
-                } else {
-                    System.out.println("Route Found: " + path.getPathLength());
-                }
-                break;
-            case 4:
-                System.out.println("---------------------------------------------------------------------------------");
-                System.out.println("Enter (Format: country:city)");
-                stdin = new Scanner(System.in);
-                countryCityString = stdin.nextLine();
-                try {
-                    countryCity = CountryCityParser.parse(countryCityString);
-                } catch (Exception e) {
-                    System.out.println("Invalid input. Should be of the format country:city");
-                    continue;
-                }
-                path = processAdapter.getShortestPath(countryCity);
+				if (shortestPath == null && longestPath == null) {
+					System.out.println("Route : No Route");
+				} else {
 
-                if (path == null) {
-                    System.out.println("No Route");
-                } else {
-                    System.out.println("Route Found: " + path.getPathLength());
-                }
-                break;
-            case 5:
-                System.out.println("---------------------------------------------------------------------------------");
-                System.out.println("Enter country:city");
-                stdin = new Scanner(System.in);
-                countryCityString = stdin.nextLine();
-                try {
-                    countryCity = CountryCityParser.parse(countryCityString);
-                } catch (Exception e) {
-                    System.out.println("Invalid input. Should be of the format country:city");
-                    continue;
-                }
-                processAdapter.addVisitedCountryCity(countryCity);
-                System.out.println("Added "+countryCityString+" to visited list");
-                System.out.println("---------------------------------------------------------------------------------");
-                break;
-            case 0:
-                System.out.println("Exiting Program.");
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Invalid input");
+					System.out.println("Route[Shortest]: " + shortestPath);
+					System.out.println("Route[Longest] : " + longestPath);
+				}
+				System.out.println("---------------------------------------------------------------------------------");
+				break;
+			case 4:
+				System.out.println("---------------------------------------------------------------------------------");
+				System.out.println("Enter (Format: country:city)");
+				stdin = new Scanner(System.in);
+				countryCityString = stdin.nextLine();
+				try {
+					countryCity = CountryCityParser.parse(countryCityString);
+				} catch (Exception e) {
+					System.out
+							.println("Invalid input. Should be of the format country:city");
+				}
+				List<Path> paths = processAdapter.getPaths(countryCity);
+				for (Path pathVariable : paths) {
+					if (pathVariable.isValid()) {
+						if (pathVariable.HasRestricted()) {
+							System.out.println(pathVariable.toString()
+									+ "[Is Restricted]");
+						} else {
+							System.out.println(pathVariable.toString()
+									+ "[Restriction Free]");
+						}
+					}
+				}
+				if (path == null) {
+					System.out.println("No Route");
+				} else {
+					System.out.println("Route Found: " + path.getPathLength());
+				}
+				System.out.println("---------------------------------------------------------------------------------");
+				break;
+			case 5:
+				System.out.println("---------------------------------------------------------------------------------");
+				System.out.println("Enter country:city");
+				stdin = new Scanner(System.in);
+				countryCityString = stdin.nextLine();
+				try {
+					countryCity = CountryCityParser.parse(countryCityString);
+				} catch (Exception e) {
+					System.out
+							.println("Invalid input. Should be of the format country:city");
+				}
+				processAdapter.addVisitedCountryCity(countryCity);
+				break;
+			case 0:
+				System.out.println("Exiting Program.");
+				System.exit(0);
+				System.out.println("---------------------------------------------------------------------------------");
+				break;
+			default:
+				System.out.println("Invalid input");
 
-            }
-        }
-    }
+			}
+		}
+	}
 }
