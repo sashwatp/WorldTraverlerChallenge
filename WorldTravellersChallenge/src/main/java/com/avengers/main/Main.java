@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args) {
         String countryCityString;
         CountryCity countryCity = null;
+        Path path = null;
 
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 
@@ -49,7 +50,8 @@ public class Main {
                 } catch (Exception e) {
                     System.out.println("Invalid input. Should be of the format country:city");
                 }
-                Path path = processAdapter.getShortestUnrestrictedPath(countryCity);
+
+                path = processAdapter.getShortestUnrestrictedPath(countryCity);
 
                 if (path == null) {
                     System.out.println("No Route");
@@ -66,6 +68,13 @@ public class Main {
                 } catch (Exception e) {
                     System.out.println("Invalid input. Should be of the format country:city");
                 }
+                path = processAdapter.getShortestPath(countryCity);
+
+                if (path == null) {
+                    System.out.println("No Route");
+                } else {
+                    System.out.println("Route Found: " + path.getPathLength());
+                }
                 break;
             case 5:
                 System.out.println("Enter country:city");
@@ -76,6 +85,7 @@ public class Main {
                 } catch (Exception e) {
                     System.out.println("Invalid input. Should be of the format country:city");
                 }
+                processAdapter.addVisitedCountryCity(countryCity);
                 break;
             case 0:
                 System.out.println("Exiting Program.");

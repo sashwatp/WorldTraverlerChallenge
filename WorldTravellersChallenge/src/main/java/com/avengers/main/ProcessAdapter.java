@@ -29,4 +29,23 @@ public class ProcessAdapter {
         }
         return path;
     }
+
+    public Path getShortestPath(CountryCity countryCity) {
+        PathSet pathSet = null;
+        Path path = null;
+        if ((pathSet = destinationCityPaths.get(countryCity)) != null) {
+            path = pathSet.getShortestPath();
+        }
+        return path;
+    }
+
+    public void addVisitedCountryCity(CountryCity countryCity) {
+        List<Path> paths = countryCityReverseMap.get(countryCity);
+
+        if (paths != null) {
+            for (Path path : paths) {
+                path.markCountryAsVisited(countryCity);
+            }
+        }
+    }
 }

@@ -1,5 +1,1 @@
-India:Bhopal
-India:Shimla
-India:Lucknow 
-
-India:Newark 
+India:Delhi
