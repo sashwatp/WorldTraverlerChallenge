@@ -11,7 +11,7 @@ public class CountryCityParser {
         if (temp.length == 2) {
             String country = temp[0].trim();
             String city = temp[1].trim();
-            if (!isValidCountryOrCity(country) || isValidCountryOrCity(city)) {
+            if (!isValidCountryOrCity(country) || !isValidCountryOrCity(city)) {
                 throw new RuntimeException("Invalid Country or City");
             }
             countryCity.setCountry(country);

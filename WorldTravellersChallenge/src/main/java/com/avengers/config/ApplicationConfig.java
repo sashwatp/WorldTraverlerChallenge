@@ -42,7 +42,7 @@ public class ApplicationConfig {
 	}
 
 	@Bean(name = BeanIdentifiers.WANT_TO_VISIT_CITIES)
-	public Set<CountryCity> wantToVisit() throws IOException {
+	public List<String> wantToVisit() throws IOException {
 		return new WantToVisitParser(FilePath.WANT_TO_VISIT)
 				.getWantToVisitCountryCity();
 	}

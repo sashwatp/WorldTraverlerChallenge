@@ -1,53 +1,40 @@
 package com.avengers.parser;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.avengers.model.CountryCity;
 
 public class WantToVisitParser {
 
-	private Set<CountryCity> wantToVisitCountryCity;
+    private List<String> wantToVisitCountryCity;
 
-	public Set<CountryCity> getWantToVisitCountryCity() {
-		return wantToVisitCountryCity;
-	}
+    public List<String> getWantToVisitCountryCity() {
+        return wantToVisitCountryCity;
+    }
 
-	public WantToVisitParser(String filePath) throws IOException {
+    public WantToVisitParser(String filePath) throws IOException {
 
-		wantToVisitCountryCity = new HashSet<CountryCity>();
-		BufferedReader br = new BufferedReader(new FileReader(filePath));
-		String line;
-		String[] temp;
-		line = br.readLine();
+        wantToVisitCountryCity = new ArrayList<String>();
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        String line;
+        String[] temp;
+        line = br.readLine();
 
-		while (line != null) {
+        while (line != null) {
 
-			line = line.trim();
-			if (!line.isEmpty()) {
-				temp = line.split(":");
+            line = line.trim();
+            if (!line.isEmpty()) {
 
-				CountryCity countryCityObj = new CountryCity();
-				if (temp.length == 2) {
-					countryCityObj.setCountry(temp[0]);
-					countryCityObj.setCity(temp[1]);
+                wantToVisitCountryCity.add(line);
 
-				} else {
-					countryCityObj.setCountry(temp[0]);
-					countryCityObj.setCity(null);
+            }
+            line = br.readLine();
+        }
 
-				}
-
-				wantToVisitCountryCity.add(countryCityObj);
-
-			}
-			line = br.readLine();
-		}
-
-	}
+    }
 
 }
