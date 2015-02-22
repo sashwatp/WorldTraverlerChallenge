@@ -31,6 +31,7 @@ public class VisitedCountryCityParser {
                 try {
                     countryCityObj = CountryCityParser.parse(line);
                 } catch (Exception e) {
+                    System.out.println("Invalid Visited CountryCity: " + line);
                     continue;
                 }
                 visitedCountryCity.add(countryCityObj);

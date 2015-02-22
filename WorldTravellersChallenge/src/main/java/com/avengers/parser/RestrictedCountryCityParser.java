@@ -30,6 +30,7 @@ public class RestrictedCountryCityParser {
                 try {
                     countryCityObj = CountryCityParser.parse(line);
                 } catch (Exception e) {
+                    System.out.println("Invalid Restricted CountryCity: " + line);
                     continue;
                 }
 
