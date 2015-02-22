@@ -102,7 +102,6 @@ public class Path {
 	public String toString() {
 		@SuppressWarnings("rawtypes")
 		List pathStringList = new ArrayList(dependentCities);
-		System.out.println(pathStringList.size());
 		StringBuilder pathString = new StringBuilder();
 		for (int i = dependentCities.size() - 1; i >= 0; i--) {
 			if (i != 0) {

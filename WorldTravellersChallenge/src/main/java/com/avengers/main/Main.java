@@ -28,41 +28,59 @@ public class Main {
 
 		applicationInitializer.init();
 
-        while (true) {
+		while (true) {
 
-            System.out
-                    .println("===================================== Input: ==========================================");
-            System.out.println("1:Shortest dependent and restriction free route for WantToVisit cities.");
-            System.out.println("2:Number of \"No route\" results");
-            System.out.println("3:Enter country:city to find shortest or longest dependent and restriction free route");
-            System.out.println("4:Enter country:city to find all the dependent routes for the city");
-            System.out.println("5:Enter country:city to be marked as visited");
-            System.out.println("0:Exit\n\n\n");
+			System.out
+					.println("===================================== Input: ==========================================");
+			System.out
+					.println("1:Shortest dependent and restriction free route for WantToVisit cities.");
+			System.out.println("2:Number of \"No route\" results");
+			System.out
+					.println("3:Enter country:city to find shortest or longest dependent and restriction free route");
+			System.out
+					.println("4:Enter country:city to find all the dependent routes for the city");
+			System.out.println("5:Enter country:city to be marked as visited");
+			System.out.println("0:Exit\n\n\n");
 
-            Scanner stdin = new Scanner(System.in);
-            Integer input = stdin.nextInt();
-            switch (input) {
-            case 1:
-                System.out.println("Generating the shortest dependent and restriction free route for WantToVisit.txt");
-                System.out.println("---------------------------------------------------------------------------------");
-                processAdapter.processWantToVisit(true);
-                break;
-            case 2:
-                System.out.println("---------------------------------------------------------------------------------");
-                System.out.println("Number of \"No Route\" count :" + processAdapter.getNoRouteCount());
-                System.out.println("---------------------------------------------------------------------------------");
-                break;
-            case 3:
-                System.out.println("---------------------------------------------------------------------------------");
-                System.out.println("Enter (Format: country:city)");
-                stdin = new Scanner(System.in);
-                countryCityString = stdin.nextLine();
-                try {
-                    countryCity = CountryCityParser.parse(countryCityString);
-                } catch (Exception e) {
-                    System.out.println("Invalid input. Should be of the format country:city");
-                    continue;
-                }
+			Scanner stdin = new Scanner(System.in);
+			Integer input = null;
+			try {
+				input = stdin.nextInt();
+			} catch (Exception e) {
+				System.err.println("Invalid input");
+				continue;
+			}
+			switch (input) {
+			case 1:
+
+				if (processAdapter.processWantToVisit(true) == 0) {
+					System.out.println("No want to visit cities");
+					System.out
+							.println("---------------------------------------------------------------------------------");
+				}
+				break;
+			case 2:
+				System.out
+						.println("---------------------------------------------------------------------------------");
+				
+				System.out.println("Number of \"No Route\" count :"
+						+ processAdapter.getNoRouteCount());
+				System.out
+						.println("---------------------------------------------------------------------------------");
+				break;
+			case 3:
+				System.out
+						.println("---------------------------------------------------------------------------------");
+				System.out.println("Enter (Format: country:city)");
+				stdin = new Scanner(System.in);
+				countryCityString = getInputLine();
+				try {
+					countryCity = CountryCityParser.parse(countryCityString);
+				} catch (Exception e) {
+					System.out
+							.println("Invalid input. Should be of the format country:city");
+					continue;
+				}
 
 				Path shortestPath = processAdapter
 						.getShortestUnrestrictedPath(countryCity);
@@ -70,19 +88,21 @@ public class Main {
 						.getLongestUnrestrictedPath(countryCity);
 
 				if (shortestPath == null && longestPath == null) {
-					System.out.println("Route : No Route");
+					System.out.println("Route for "+countryCity.toString()+" : No Route");
 				} else {
 
 					System.out.println("Route[Shortest]: " + shortestPath);
 					System.out.println("Route[Longest] : " + longestPath);
 				}
-				System.out.println("---------------------------------------------------------------------------------");
+				System.out
+						.println("---------------------------------------------------------------------------------");
 				break;
 			case 4:
-				System.out.println("---------------------------------------------------------------------------------");
+				System.out
+						.println("---------------------------------------------------------------------------------");
 				System.out.println("Enter (Format: country:city)");
 				stdin = new Scanner(System.in);
-				countryCityString = stdin.nextLine();
+				countryCityString = getInputLine();
 				try {
 					countryCity = CountryCityParser.parse(countryCityString);
 				} catch (Exception e) {
@@ -106,13 +126,15 @@ public class Main {
 				} else {
 					System.out.println("Route Found: " + path.getPathLength());
 				}
-				System.out.println("---------------------------------------------------------------------------------");
+				System.out
+						.println("---------------------------------------------------------------------------------");
 				break;
 			case 5:
-				System.out.println("---------------------------------------------------------------------------------");
+				System.out
+						.println("---------------------------------------------------------------------------------");
 				System.out.println("Enter country:city");
 				stdin = new Scanner(System.in);
-				countryCityString = stdin.nextLine();
+				countryCityString = getInputLine();
 				try {
 					countryCity = CountryCityParser.parse(countryCityString);
 				} catch (Exception e) {
@@ -124,12 +146,22 @@ public class Main {
 			case 0:
 				System.out.println("Exiting Program.");
 				System.exit(0);
-				System.out.println("---------------------------------------------------------------------------------");
+				System.out
+						.println("---------------------------------------------------------------------------------");
 				break;
 			default:
 				System.out.println("Invalid input");
 
 			}
 		}
+	}
+	
+	private static String getInputLine() {
+		Scanner stdin = new Scanner(System.in);
+		String countryCityString = null;
+		
+		while ((countryCityString = stdin.nextLine()).isEmpty()) ;
+		
+		return countryCityString;
 	}
 }
