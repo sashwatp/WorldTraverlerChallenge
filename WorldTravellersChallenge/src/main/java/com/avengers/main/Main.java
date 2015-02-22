@@ -55,18 +55,15 @@ public class Main {
 
 				if (processAdapter.processWantToVisit(true) == 0) {
 					System.out.println("No want to visit cities");
-					System.out
-							.println("---------------------------------------------------------------------------------");
 				}
 				break;
 			case 2:
 				System.out
 						.println("---------------------------------------------------------------------------------");
-				
+
 				System.out.println("Number of \"No Route\" count :"
 						+ processAdapter.getNoRouteCount());
-				System.out
-						.println("---------------------------------------------------------------------------------");
+
 				break;
 			case 3:
 				System.out
@@ -88,16 +85,16 @@ public class Main {
 						.getLongestUnrestrictedPath(countryCity);
 
 				if (shortestPath == null && longestPath == null) {
-					System.out.println("Route for "+countryCity.toString()+" : No Route");
+					System.out.println("Route for " + countryCity.toString()
+							+ " : No Route");
 				} else {
 
-					System.out.println("Route[Shortest]: " + shortestPath);
-					System.out.println("Route[Longest] : " + longestPath);
+					System.out.println("Route[Shortest]: \t" + shortestPath);
+					System.out.println("Route[Longest] : \t" + longestPath);
 				}
-				System.out
-						.println("---------------------------------------------------------------------------------");
 				break;
 			case 4:
+				boolean notValidPath= true;
 				System.out
 						.println("---------------------------------------------------------------------------------");
 				System.out.println("Enter (Format: country:city)");
@@ -108,10 +105,16 @@ public class Main {
 				} catch (Exception e) {
 					System.out
 							.println("Invalid input. Should be of the format country:city");
+					continue;
 				}
 				List<Path> paths = processAdapter.getPaths(countryCity);
+				if (paths.size() == 0) {
+					System.out.println("No Route");
+					continue;
+				}
 				for (Path pathVariable : paths) {
 					if (pathVariable.isValid()) {
+						notValidPath = false;
 						if (pathVariable.HasRestricted()) {
 							System.out.println(pathVariable.toString()
 									+ "[Is Restricted]");
@@ -121,13 +124,12 @@ public class Main {
 						}
 					}
 				}
-				if (path == null) {
-					System.out.println("No Route");
-				} else {
-					System.out.println("Route Found: " + path.getPathLength());
+				
+				if(notValidPath) {
+					System.out.println("No route");
 				}
-				System.out
-						.println("---------------------------------------------------------------------------------");
+				
+
 				break;
 			case 5:
 				System.out
@@ -140,14 +142,15 @@ public class Main {
 				} catch (Exception e) {
 					System.out
 							.println("Invalid input. Should be of the format country:city");
+					continue;
 				}
 				processAdapter.addVisitedCountryCity(countryCity);
+				System.out.println("Added "+countryCityString+" to visited cities list");
 				break;
 			case 0:
 				System.out.println("Exiting Program.");
 				System.exit(0);
-				System.out
-						.println("---------------------------------------------------------------------------------");
+
 				break;
 			default:
 				System.out.println("Invalid input");
@@ -155,13 +158,14 @@ public class Main {
 			}
 		}
 	}
-	
+
 	private static String getInputLine() {
 		Scanner stdin = new Scanner(System.in);
 		String countryCityString = null;
-		
-		while ((countryCityString = stdin.nextLine()).isEmpty()) ;
-		
+
+		while ((countryCityString = stdin.nextLine()).isEmpty())
+			;
+
 		return countryCityString;
 	}
 }
