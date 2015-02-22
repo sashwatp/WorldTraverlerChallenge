@@ -1,5 +1,7 @@
 package com.avengers.main;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +41,25 @@ public class ProcessAdapter {
         return path;
     }
 
+    public List<Path> getPaths(CountryCity countryCity) {
+    	
+    	PathSet pathSet = destinationCityPaths.get(countryCity);
+    	if (pathSet != null) {
+    		return pathSet.getPaths();
+    	}
+    	return Collections.emptyList();
+    	
+    }
+    
+    public Path getLongestUnrestrictedPath(CountryCity countryCity) {
+        PathSet pathSet = null;
+        Path path = null;
+        if ((pathSet = destinationCityPaths.get(countryCity)) != null) {
+            path = pathSet.getLongestUnrestrictedPath();
+        }
+        return path;
+    }
+
     public void addVisitedCountryCity(CountryCity countryCity) {
         List<Path> paths = countryCityReverseMap.get(countryCity);
 
@@ -48,4 +69,7 @@ public class ProcessAdapter {
             }
         }
     }
+    
+    
+    
 }
