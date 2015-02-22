@@ -25,7 +25,9 @@ public class RestrictedCountryParser {
 		while (line != null) {
 			line = line.trim();
 			if (!line.isEmpty()) {
-				restrictedCountries.add(line);
+				if(CountryCityParser.isValidCountryOrCity(line)){
+					restrictedCountries.add(line);
+				}
 			}
 			line = br.readLine();
 		}

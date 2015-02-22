@@ -23,7 +23,7 @@ public class CountryCityParser {
     }
 
     public static boolean isValidCountryOrCity(String input) {
-        if (input.matches("[a-ZA-Z]")) {
+        if (input.matches("[a-zA-Z. ]+")) {
             return true;
         }
         return false;
