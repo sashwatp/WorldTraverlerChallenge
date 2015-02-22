@@ -60,7 +60,7 @@ public class PathSet {
 				setLongestRestrictedPath(path);
 			} else {
 				setShortestUnrestricedPath(path);
-				setLongestRestrictedPath(path);
+				setLongestUnrestricedPath(path);
 			}
 		}
 	}
