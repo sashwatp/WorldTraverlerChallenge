@@ -8,11 +8,11 @@ public class PathSet {
     private Set<Path> Paths;
     private Path shortestRestrictedPath;
     private Path shortestUnrestrictedPath;
+    private Path longestRestrictedPath;
+    private Path longestUnrestrictedPath;
 
     public PathSet() {
         Paths = new HashSet<Path>();
-        shortestRestrictedPath = null;
-        shortestUnrestrictedPath = null;
     }
 
     public void addPath(Path path) {
@@ -28,6 +28,10 @@ public class PathSet {
 
     public Path getShortestUnrestrictedPath() {
         return shortestUnrestrictedPath;
+    }
+    
+    public Path getLongestUnrestrictedPath() {
+        return longestUnrestrictedPath;
     }
 
     public Path getShortestPath() {
@@ -47,14 +51,16 @@ public class PathSet {
     public void reEvaluate(Path path) {
         if (path.isValid()) {
             if (path.HasRestricted()) {
-                setRestrictedPath(path);
+                setShortestRestrictedPath(path);
+                setLongestRestrictedPath(path);
             } else {
-                setUnrestricedPath(path);
+                setShortestUnrestricedPath(path);
+                setLongestRestrictedPath(path);
             }
         }
     }
 
-    private void setUnrestricedPath(Path path) {
+    private void setShortestUnrestricedPath(Path path) {
         if (shortestUnrestrictedPath == null) {
             shortestUnrestrictedPath = path;
         } else if (shortestUnrestrictedPath.getPathLength() > path.getPathLength()) {
@@ -63,13 +69,31 @@ public class PathSet {
 
     }
 
-    private void setRestrictedPath(Path path) {
+    private void setShortestRestrictedPath(Path path) {
         if (shortestRestrictedPath == null) {
             shortestRestrictedPath = path;
 
         } else if (shortestRestrictedPath.getPathLength() > path.getPathLength()) {
             shortestRestrictedPath = path;
         }
+    }
+
+    private void setLongestRestrictedPath(Path path) {
+        if (longestRestrictedPath == null) {
+            longestRestrictedPath = path;
+
+        } else if (longestRestrictedPath.getPathLength() < path.getPathLength()) {
+            longestRestrictedPath = path;
+        }
+    }
+
+    private void setLongestUnrestricedPath(Path path) {
+        if (longestUnrestrictedPath == null) {
+            longestUnrestrictedPath = path;
+        } else if (longestUnrestrictedPath.getPathLength() < path.getPathLength()) {
+            longestUnrestrictedPath = path;
+        }
+
     }
 
 }
