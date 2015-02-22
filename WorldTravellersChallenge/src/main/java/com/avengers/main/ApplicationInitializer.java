@@ -30,7 +30,7 @@ public class ApplicationInitializer {
     private Set<CountryCity> visitorCountryCities;
 
     @Resource(name = BeanIdentifiers.WANT_TO_VISIT_CITIES)
-    private Set<CountryCity> wantToVisitCities;
+    private List<String> wantToVisitCities;
 
     @Resource(name = BeanIdentifiers.DESTINATION_PATHS_MAP)
     private Map<CountryCity, PathSet> destinationCityPaths;
