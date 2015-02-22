@@ -11,34 +11,32 @@ import com.avengers.model.CountryCity;
 
 public class VisitedCountryCityParser {
 
-	private Set<CountryCity> visitedCountryCity;
+    private Set<CountryCity> visitedCountryCity;
 
-	public Set<CountryCity> getVisitedCountryCity() {
-		return visitedCountryCity;
-	}
+    public Set<CountryCity> getVisitedCountryCity() {
+        return visitedCountryCity;
+    }
 
-	public VisitedCountryCityParser(String filePath) throws IOException {
+    public VisitedCountryCityParser(String filePath) throws IOException {
 
-		visitedCountryCity = new HashSet<CountryCity>();
-		BufferedReader br = new BufferedReader(new FileReader(filePath));
-		String line;
-		String[] temp;
-		line = br.readLine();
+        visitedCountryCity = new HashSet<CountryCity>();
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        String line;
+        line = br.readLine();
 
-		while (line != null) {
-			line = line.trim();
-			if (!line.isEmpty()) {
-				temp = line.split(":");
-				if (temp.length == 2) {
-					CountryCity countryCityObj = new CountryCity();
-					countryCityObj.setCountry(temp[0]);
-					countryCityObj.setCity(temp[1]);
-					visitedCountryCity.add(countryCityObj);
-				}
-			}
-			line = br.readLine();
-		}
+        while (line != null) {
+            line = line.trim();
+            if (!line.isEmpty()) {
+                CountryCity countryCityObj = null;
+                try {
+                    countryCityObj = CountryCityParser.parse(line);
+                } catch (Exception e) {
+                    continue;
+                }
+                visitedCountryCity.add(countryCityObj);
+            }
+            line = br.readLine();
+        }
 
-	}
-
+    }
 }

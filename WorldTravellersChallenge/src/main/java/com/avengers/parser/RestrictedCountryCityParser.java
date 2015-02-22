@@ -11,36 +11,34 @@ import com.avengers.model.CountryCity;
 
 public class RestrictedCountryCityParser {
 
-	private Set<CountryCity> restrictedCountryCity;
+    private Set<CountryCity> restrictedCountryCity;
 
-	public Set<CountryCity> getRestrictedCountryCity() {
-		return restrictedCountryCity;
-	}
+    public Set<CountryCity> getRestrictedCountryCity() {
+        return restrictedCountryCity;
+    }
 
-	public RestrictedCountryCityParser(String filePath) throws IOException {
-		restrictedCountryCity = new HashSet<CountryCity>();
-		BufferedReader br = new BufferedReader(new FileReader(filePath));
-		String line;
-		String[] temp;
-		line = br.readLine();
+    public RestrictedCountryCityParser(String filePath) throws IOException {
+        restrictedCountryCity = new HashSet<CountryCity>();
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        String line;
+        line = br.readLine();
 
-		while (line != null) {
-			line = line.trim();
-			if (!line.isEmpty()) {
-				temp = line.split(":");
-				if (temp.length == 2) {
-					CountryCity countryCityObj = new CountryCity();
+        while (line != null) {
+            line = line.trim();
+            if (!line.isEmpty()) {
+                CountryCity countryCityObj = null;
+                try {
+                    countryCityObj = CountryCityParser.parse(line);
+                } catch (Exception e) {
+                    continue;
+                }
 
-					countryCityObj.setCountry(temp[0]);
-					countryCityObj.setCity(temp[1]);
+                restrictedCountryCity.add(countryCityObj);
 
-					restrictedCountryCity.add(countryCityObj);
+            }
+            line = br.readLine();
+        }
 
-				}
-			}
-			line = br.readLine();
-		}
-
-	}
+    }
 
 }
